@@ -21,12 +21,17 @@ const MyBooks = () => {
                 const result = [];
                 for (let index = 0; index < count; index++) {
                     const bookKey = await bookContract.bookKeys(index);
-                    const book = await bookContract.books(bookKey);
 
-                    result.push({
-                        name: book.name,
-                        copies: book.copies
-                    });
+                    const isBorrowed = await bookContract.borrowedBook(signer._address, bookKey);
+
+                    if (isBorrowed) {
+                        const book = await bookContract.books(bookKey);
+
+                        result.push({
+                            name: book.name,
+                            copies: book.copies
+                        });
+                    }
                 }
 
                 setContractData(result);
