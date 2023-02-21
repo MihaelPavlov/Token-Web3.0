@@ -65,7 +65,7 @@ const MyBooks = () => {
                             <div className="card m-5">
                                 <div key={book.name} className="card-body">
                                     <h4 className="card-title text-center">{book.name}</h4>
-                                    <p className="text-center">Copies: {book.copies.toString()}</p>
+                                    <p className="text-center">Copies: 1</p>
                                 </div>
                             </div>
                         ))}

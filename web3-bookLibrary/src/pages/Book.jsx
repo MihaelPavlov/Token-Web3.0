@@ -10,10 +10,10 @@ const Book = ({ name, copies }) => {
 
     const [contract, setContract] = new useState();
     const [formSubmitError, setFormSubmitError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
-
             if (signer) {
                 const bookContract = new ethers.Contract(contractAddress, bookABI.abi, signer);
                 setContract(bookContract);
@@ -22,33 +22,49 @@ const Book = ({ name, copies }) => {
 
         fetchData();
 
-
     }, [signer, contractAddress]);
 
     const borrowBookClickHandler = async () => {
+        setIsLoading(true);
         try {
             const tx = await contract.borrowBook(name);
 
             await tx.wait();
-
         } catch (e) {
             setFormSubmitError(e.reason);
+        } finally {
+            setIsLoading(false);
         }
     }
 
     const returnBookClickHandler = async () => {
+        setIsLoading(true);
+
         try {
             const tx = await contract.returnBook(name);
 
             await tx.wait();
-
         } catch (e) {
             setFormSubmitError(e.reason);
+        } finally {
+            setIsLoading(false);
         }
     }
 
     return (
         <div>
+            {isLoading ? (
+                <div className="mt-5 d-flex justify-content-center">
+                    <>
+                        <span
+                            className="spinner-border me-5"
+                            role="status"
+                            aria-hidden="true"
+                        ></span>{' '}
+                        <span>Loading...</span>
+                    </>
+                </div>
+            ) : null}
             {formSubmitError ? (
                 <div className="alert alert-danger mb-4">{formSubmitError}</div>
             ) : null}
@@ -63,6 +79,7 @@ const Book = ({ name, copies }) => {
                 </div>
 
             </div>
+
         </div>
     );
 
