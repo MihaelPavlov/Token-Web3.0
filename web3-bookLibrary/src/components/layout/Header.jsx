@@ -45,6 +45,8 @@ function Header() {
                 <Link to="/" className='btn btn-warning mx-5'>View all books</Link>
                 <Link to="/addBook" className='btn btn-warning mx-5'>Add New Book</Link>
                 <Link to="/myBooks" className='btn btn-warning mx-5'>My Books</Link>
+                <Link to="/sign" className='btn btn-warning mx-5'>Sign</Link>
+
               </div>
               : ""
           }

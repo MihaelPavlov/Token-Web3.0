@@ -9,7 +9,7 @@ import Election from '../pages/Election';
 import BooksLibrary from '../pages/BooksLibrary';
 import AddBook from '../pages/AddBook';
 import MyBooks from '../pages/MyBooks';
-
+import MessageSigningExample from '../pages/MessageSigningExample'
 import Header from './layout/Header';
 import Footer from './layout/Footer';
 
@@ -32,6 +32,7 @@ function App() {
               <Route path='/addBook' element={<AddBook />}></Route>
               <Route path='/myBooks' element={<MyBooks />}></Route>
               <Route path='/ele' element={<Election />}></Route>
+              <Route path='/sign' element={<MessageSigningExample />}></Route>
 
             </Routes>
           </div>

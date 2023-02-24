@@ -6,7 +6,7 @@ import bookABI from '../abi/Book.json';
 const AddBook = () => {
     const { data: signer } = useSigner();
 
-    const contractAddress = '0x5F949F02BBA6cA61039B699Db5d5bC08207A0BA2';
+    const contractAddress = '0x638Ef690c16cfb09C0a048CB0B6f8bDcc9afB4C8';
 
     // Contract states
     const [contract, setContract] = useState();
